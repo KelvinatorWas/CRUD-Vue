@@ -15,17 +15,22 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/AboutView.vue'),
     },
     {
       path: '/preview/:id',
       name: 'preview',
-      component: () => import('../views/EditView.vue')
+      component: () => import('../views/DetailedView.vue'),
+    },
+    {
+      path: '/preview/:id/edit',
+      name: 'edit',
+      component: () => import('../views/EditView.vue'),
     },
     {
       path: '/:pathMatch(.*)',
       name: 'not-found',
-      component: () => import('../views/NotFoundView.vue')
+      component: () => import('../views/NotFoundView.vue'),
     }
   ]
 })

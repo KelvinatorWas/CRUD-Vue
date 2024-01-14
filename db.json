@@ -8,11 +8,11 @@
       "id": 1
     },
     {
-      "name": "Puppy",
+      "id": 3,
+      "name": "Cupcake",
+      "age": 123,
       "image": "puppy",
-      "age": 12,
-      "species": "Amphibian",
-      "id": 3
+      "species": "Amphibian"
     },
     {
       "name": "Kitten",
@@ -22,13 +22,6 @@
       "id": 4
     },
     {
-      "name": "Cat",
-      "image": "cat",
-      "age": 2,
-      "species": "Mammal",
-      "id": 5
-    },
-    {
       "name": "Frog",
       "image": "frog",
       "age": 1,
@@ -36,18 +29,11 @@
       "id": 6
     },
     {
+      "id": 7,
       "name": "Lizard",
+      "age": 1,
       "image": "lizard",
-      "age": 2,
-      "species": "Reptile",
-      "id": 7
-    },
-    {
-      "name": "Dog",
-      "image": "Dog",
-      "age": "12",
-      "species": "Mammal",
-      "id": 8
+      "species": "Reptile"
     }
   ]
 }
