@@ -1,0 +1,53 @@
+{
+  "animals": [
+    {
+      "name": "Cat",
+      "image": "cat",
+      "age": 3,
+      "species": "Mammal",
+      "id": 1
+    },
+    {
+      "name": "Puppy",
+      "image": "puppy",
+      "age": 12,
+      "species": "Amphibian",
+      "id": 3
+    },
+    {
+      "name": "Kitten",
+      "image": "kitten",
+      "age": 23,
+      "species": "Mammal",
+      "id": 4
+    },
+    {
+      "name": "Cat",
+      "image": "cat",
+      "age": 2,
+      "species": "Mammal",
+      "id": 5
+    },
+    {
+      "name": "Frog",
+      "image": "frog",
+      "age": 1,
+      "species": "Amphibian",
+      "id": 6
+    },
+    {
+      "name": "Lizard",
+      "image": "lizard",
+      "age": 2,
+      "species": "Reptile",
+      "id": 7
+    },
+    {
+      "name": "Dog",
+      "image": "Dog",
+      "age": "12",
+      "species": "Mammal",
+      "id": 8
+    }
+  ]
+}
