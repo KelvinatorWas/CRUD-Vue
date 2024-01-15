@@ -8,7 +8,6 @@ import type { Animal } from '@/types/animal'
 import { ref } from 'vue';
 import type { InputTypes } from '@/types/input';
 import Toastify from 'toastify-js'
-import "toastify-js/src/toastify.css"
 
 const Inputs:InputTypes[] = [
   {
@@ -96,8 +95,8 @@ export default {
 
 <template>
   <ButtonComponent 
-    :styleClass="showForm ? 'ui-select ui-active' : 'ui-select'"
-    :innerText="showForm ? 'Hide Form' : 'Show Form'"
+    :style="showForm ? 'ui-select ui-active' : 'ui-select'"
+    :label="showForm ? 'Hide Form' : 'Show Form'"
     :onClick="onShowFormClick"
   />
 
@@ -124,7 +123,7 @@ export default {
           :optionValues="speciesType"
         />
 
-        <ButtonComponent innerText="Add Animal" styleClass="green" />
+        <ButtonComponent :style="'green'" label="Add Animal"/>
       </form>
     </section>
   </div>

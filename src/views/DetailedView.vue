@@ -66,8 +66,8 @@ onBeforeMount(() => {
       </div>
 
       <div class="button-container">
-        <Button innerText="Edit" styleClass="green" :onClick="onEditClick" />
-        <Button innerText="Delete" styleClass="red" :onClick="onDeleteClick" />
+        <Button label="Edit" :style="'green'" :onClick="onEditClick" />
+        <Button label="Delete" :style="'red'" :onClick="onDeleteClick" />
       </div>
     </section>
   </main>

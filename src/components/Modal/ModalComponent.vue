@@ -29,12 +29,12 @@ defineExpose({closeModal});
   <div v-if="showModal" :class="css.modal">
 
     <div :class="css.modal_content">
-      <Button innerText="✖" :styleClass="css.close" :onClick="closeModal" />
+      <Button label="✖" :style="css.close" :onClick="closeModal" />
       <p :class="css.info_bold">{{ heading }}</p>
       <p>{{ sub }}</p>
       <div :class="css.button_container">
-        <Button :onClick="closeModal" innerText="Cancel" styleClass="green" />
-        <Button innerText="Submit" styleClass="red" :onClick="onClickSubmit" />
+        <Button :onClick="closeModal" label="Cancel" :style="'green'" />
+        <Button label="Submit" :style="'red'" :onClick="onClickSubmit" />
       </div>
     </div>
   </div>

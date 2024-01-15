@@ -29,17 +29,17 @@
       "id": 6
     },
     {
-      "id": 7,
-      "name": "Lizard",
-      "age": 1,
-      "image": "lizard",
-      "species": "Reptile"
-    },
-    {
       "id": 8,
       "name": "Puma",
       "age": 12,
       "image": "puma",
+      "species": "Mammal"
+    },
+    {
+      "id": 9,
+      "name": "Cowsadsa",
+      "age": 5,
+      "image": "cow",
       "species": "Mammal"
     }
   ]

@@ -126,8 +126,8 @@ onBeforeMount(() => {
       </form>
 
       <div class="button-container">
-        <Button innerText="Cancel" styleClass="green" :onClick="reRoute" />
-        <Button innerText="Submit" styleClass="red" :onClick="onSubmitClick" />
+        <Button label="Cancel" :style="'green'" :onClick="reRoute" />
+        <Button label="Submit" :style="'red'" :onClick="onSubmitClick" />
       </div>
     </section>
   </main>

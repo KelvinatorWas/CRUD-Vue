@@ -1,11 +1,11 @@
 <script setup lang="ts">
+
 type ButtonProp = {
-  styleClass?: string;
-  innerText?: string;
-  toggle?: boolean;
+  style?: string;
+  label: string;
 }
 
-const { styleClass, innerText } = defineProps<ButtonProp>();
+const { style, label } = defineProps<ButtonProp>();
 const emit = defineEmits(['onClick']);
 
 const onClick = () => {
@@ -15,8 +15,8 @@ const onClick = () => {
 </script>
 
 <template>
-  <button :class="['base-btn', !styleClass ? '' : styleClass].join(' ')" :on-click="onClick">
-    {{ !innerText ? "Button" : innerText }}
+  <button :class="['base-btn', !style ? '' : style].join(' ')" :on-click="onClick">
+    {{ !label ? "Button" : label }}
   </button>
 </template>
 
