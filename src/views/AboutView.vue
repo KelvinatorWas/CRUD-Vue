@@ -1,7 +1,7 @@
 <template>
+  <article class="info">
   <h1 class="about">About this Project</h1>
 
-  <article>
     <h2>Angular CRUD</h2>
     <p>This project was made in <b><a href="https://vuejs.org/" target="_blank">VueJs</a>.</b></p>
     <h3>Technolgies Used:</h3>
@@ -22,5 +22,10 @@
 .about {
   display: flex;
   justify-content: center;
+}
+.info {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 5px;
 }
 </style>

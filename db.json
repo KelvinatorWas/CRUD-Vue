@@ -1,25 +1,25 @@
 {
   "animals": [
     {
-      "name": "Cat",
-      "image": "cat",
+      "id": 1,
+      "name": "Bald Eagle",
       "age": 3,
-      "species": "Mammal",
-      "id": 1
+      "image": "bald_eagle",
+      "species": "Bird"
     },
     {
       "id": 3,
-      "name": "Cupcake",
+      "name": "Puppy",
       "age": 123,
       "image": "puppy",
-      "species": "Amphibian"
+      "species": "Mammal"
     },
     {
+      "id": 4,
       "name": "Kitten",
-      "image": "kitten",
       "age": 23,
-      "species": "Mammal",
-      "id": 4
+      "image": "kitten",
+      "species": "Mammal"
     },
     {
       "name": "Frog",
@@ -34,6 +34,13 @@
       "age": 1,
       "image": "lizard",
       "species": "Reptile"
+    },
+    {
+      "id": 8,
+      "name": "Puma",
+      "age": 12,
+      "image": "puma",
+      "species": "Mammal"
     }
   ]
 }

@@ -2,11 +2,14 @@
 import Input from '@/components/Input/InputComponent.vue'
 import Modal from '@/components/Modal/ModalComponent.vue';
 import Button from '@/components/Button/ButtonComponent.vue';
+import Select from '@/components/Select/SelectComponent.vue'
 import type { Animal, SpeciesType } from '@/types/animal';
 import { readDataOne, updateData } from '@/utils/crud';
 import { DB_ANIMALS, joinLink, str } from '@/utils/serverLink';
 import { onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 type InputVModal = "name" | "image" | "age";
 
@@ -84,6 +87,13 @@ const reRoute = () => {
 const updateAnimal = () => {
   const { name, image, age, species } = formData;
   updateData<Animal>(DB_ANIMALS, id, { id: +id, name: name.value, age: +age.value, image: image.value, species: species.value });
+  Toastify({
+    text: `Updated Animal`,
+    duration: 3000,
+    style: {
+      background: "linear-gradient(to right, green, darkgreen)",
+    }
+  }).showToast();
   reRoute();
 }
 
@@ -105,14 +115,13 @@ onBeforeMount(() => {
           v-model="formData[inputType.vModal].value"
         />
 
-        <label for="species">Species:</label>
-        <select v-model="formData.species.value" id="species">
-          <option 
-            v-for="(specie, index) in Species"
-            :key="index"
-            :value="specie"
-          >{{ specie }}</option>
-        </select>
+        <Select
+          v-model="formData.species.value"
+          placeholder="Select Species"
+          :label="{for:'species', innerText:'Species:'}"
+          id="species"
+          :optionValues="Species"
+        />
 
       </form>
 

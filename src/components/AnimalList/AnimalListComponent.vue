@@ -2,24 +2,18 @@
 import AnimalCard from '../AnimalCard/AnimalCardComponent.vue'
 import ButtonComponent from '../Button/ButtonComponent.vue'
 import InputComponent from '../Input/InputComponent.vue'
+import SelectComponent from '../Select/SelectComponent.vue'
 import { createData, readData } from '@/utils/crud';
 import type { Animal } from '@/types/animal'
 import { ref } from 'vue';
-
-type InputVModal = "name" | "image" | "age";
-
-type InputTypes = {
-  vModal:InputVModal,
-  label?: {innerText: string, for:string},
-  input: {
-    id:string, type:string, placeholder:string, required:boolean
-  }
-} 
+import type { InputTypes } from '@/types/input';
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 const Inputs:InputTypes[] = [
   {
     vModal:"name",
-    label: { innerText: 'Name', for: 'name' },
+    label: { innerText: 'Name:', for: 'name' },
     input: { id: 'name', type: 'text', placeholder: 'Name...', required: true }
   },
   {
@@ -49,6 +43,7 @@ export default {
     AnimalCard,
     ButtonComponent,
     InputComponent,
+    SelectComponent,
   },
   data() {
     return {
@@ -60,7 +55,7 @@ export default {
         name: ref(''),
         image: ref(''),
         age: ref(''),
-        species: ref('Unknown'),
+        species: ref(''),
       },
 
     };
@@ -82,7 +77,14 @@ export default {
       createData("http://localhost:3004/animals", this.formData);
       this.getAnimals();
 
-      console.log(this.formData);
+      Toastify({
+        text: `Created a new animal!`,
+        duration: 3000,
+        style: {
+          background: "linear-gradient(to right, green, darkgreen)",
+        }
+      }).showToast();
+
     },
   },
   beforeMount() {
@@ -104,8 +106,8 @@ export default {
       <AnimalCard v-for="(animal, index) in animals" :key="index" :animalData=animal />
     </section>
 
-    <section class="editor-form-section" v-if="showForm" :onSubmit="onSubmit">
-      <form id="addAnimal" class="add-animal">
+    <section class="editor-form-section" v-if="showForm">
+      <form id="addAnimal" class="add-animal" :onSubmit="onSubmit">
         <InputComponent
           v-for="(inputType, index) in formInputs"
           :key="index"
@@ -114,10 +116,13 @@ export default {
           v-model="formData[inputType.vModal]"
         /> 
 
-        <label for="species">Species:</label>
-        <select v-model="formData.species" id="species">
-          <option v-for="(specie, index) in speciesType" :key="index" :value="specie">{{ specie }}</option>
-        </select>
+        <SelectComponent
+          v-model="formData.species"
+          placeholder="Select Species"
+          :label="{for:'species', innerText:'Species:'}"
+          id="species"
+          :optionValues="speciesType"
+        />
 
         <ButtonComponent innerText="Add Animal" styleClass="green" />
       </form>
@@ -154,6 +159,16 @@ export default {
   display: flex;
   flex-direction: column;
   row-gap: .5rem;
+}
+
+.base_select {
+  padding: .2rem .5rem;
+  border: 2px solid transparent;
+  background-color: rgba(118, 123, 255, 0.23);
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
 }
 
 @media screen and (max-width: 820px) {

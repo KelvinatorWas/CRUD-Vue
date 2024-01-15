@@ -19,8 +19,13 @@ const {label, input} = defineProps<InputProps>();
 </script>
 
 <template>
-  <label v-if="label" :for="label.for">{{ label.innerText }}</label>
-  <input 
+  <label 
+    v-if="label"
+    :for="label.for"
+  >{{ label.innerText }}</label>
+  
+  <input
+    class="base_input"
     :type="input.type"
     :id="input.id"
     v-model="inputModal"
@@ -28,3 +33,20 @@ const {label, input} = defineProps<InputProps>();
     :required="input.required"
   />
 </template>
+
+
+<style>
+.base_input {
+  padding: .2rem .5rem;
+  border: 2px solid transparent;
+  background-color: rgba(118, 123, 255, 0.23);
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+}
+.base_input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+</style>

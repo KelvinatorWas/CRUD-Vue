@@ -3,8 +3,15 @@ import AnimalList from '@/components/AnimalList/AnimalListComponent.vue'
 </script>
 
 <template>
-  <main>
-    <h1>Hello World</h1>
+  <main class="main-container">
     <AnimalList></AnimalList>
   </main>
 </template>
+
+<style>
+.main-container {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 5px;
+}
+</style>

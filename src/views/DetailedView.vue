@@ -7,6 +7,8 @@ import { readDataOne, deleteData } from '@/utils/crud';
 import { DB_ANIMALS, joinLink } from '@/utils/serverLink';
 import { onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import Toastify from 'toastify-js'
+import "toastify-js/src/toastify.css"
 
 // Route & Router
 const route = useRoute();
@@ -32,6 +34,15 @@ const onEditClick = () => {
 
 const deleteAnimal = () => {
   deleteData(DB_ANIMALS, +id);
+  
+  Toastify({
+    text: `Deleted Animal`,
+    duration: 3000,
+    style: {
+      background: "linear-gradient(to right, red, darkred)",
+    }
+  }).showToast();
+
   router.push('/');
 }
 
@@ -43,12 +54,16 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <main class="detail-view">
-    <section v-if="animal" class="ui-container">
-      <Image :imgName="animal.image" :imgAlt="animal.image" imgClass="animal-image" />
-      <h2 class="animal-name">{{ animal.name }}</h2>
-      <p class="animal-age">Age: {{ animal.age }}</p>
-      <p class="animal-species">Species: {{ animal.species }}</p>
+  <main class="detailed-animals">
+    <section v-if="animal" class="ui">
+      <div class="data">
+        <Image :imgName="animal.image" :imgAlt="animal.image" imgClass="animal-image" />
+        <div class="animal-info">  
+          <h2 class="animal-name">{{ animal.name }}</h2>
+          <p class="animal-text"><b>Age:</b> {{ animal.age }}</p>
+          <p class="animal-text"><b>Species:</b> {{ animal.species }}</p>
+        </div>
+      </div>
 
       <div class="button-container">
         <Button innerText="Edit" styleClass="green" :onClick="onEditClick" />
@@ -60,25 +75,46 @@ onBeforeMount(() => {
 </template>
 
 <style>
-.detail-view {
+.detailed-animals {
   margin-top: 1rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
   padding: 1rem;
+  border-radius: 5px;
 }
 
-.ui-container {
+.ui {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.animal-info {
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
   border: 1px solid black;
-  padding: 2rem;
+  padding: 0 2rem;
+  flex-grow: 1;
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 1rem;
+  column-gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .button-container {
   display: flex;
   column-gap: 2rem;
-  justify-content: space-between;
+  align-self: flex-end
 }
 
 .animal-image {
@@ -87,5 +123,9 @@ onBeforeMount(() => {
   height: 200px;
   border-radius: 5px;
   user-select: none;
+}
+
+.animal-text {
+  margin: .5rem 0;
 }
 </style>
