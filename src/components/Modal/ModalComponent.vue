@@ -46,7 +46,6 @@ defineExpose({ toggleModal });
 
 <template>
   <div v-if="showModal" :class="css.modal">
-
     <div :class="css.modal_content">
       <Button label="✖" :style="css.close" :onClick="closeCallback" />
       <p :class="css.info_bold">{{ title }}</p>
