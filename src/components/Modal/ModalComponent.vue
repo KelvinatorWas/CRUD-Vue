@@ -1,40 +1,59 @@
 <script setup lang="ts">
 import Button from '../Button/ButtonComponent.vue';
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 type ModalProp = {
-  heading?: string;
-  sub?: string
+  title?: string;
+  message?: string;
+  acceptionLabel?:string;
+  rejectionLabel?:string;
 }
 
-const emit = defineEmits(['onClickSubmit']);
+// Emitters
+const emit = defineEmits(['acceptCallback', 'rejectCallback', 'closeCallback']);
 const showModal = ref(false);
-const {heading, sub} = withDefaults(defineProps<ModalProp>(), {
-  heading: "Are you sure?",
-  sub:"There is no undo button, what is lost is lost!",
+
+// Props
+const { title, message, acceptionLabel, rejectionLabel } = withDefaults(defineProps<ModalProp>(), {
+  title: "Are you sure?",
+  message: "There is no undo button, what is lost is lost!",
+  acceptionLabel: "Submit",
+  rejectionLabel: "Cancel",
 });
 
-const onClickSubmit = () => {
-  emit("onClickSubmit");
-}
+// Modal Functions
+const rejectCallback = () => {
+  toggleModal();
+  emit('rejectCallback');
+};
 
-const closeModal = () => {
+const acceptCallback = () => {
+  emit("acceptCallback");
+};
+
+const closeCallback = () => {
+  toggleModal();
+  emit('closeCallback');
+};
+
+const toggleModal = () => {
+  // true -> show | false -> hide 
   showModal.value = !showModal.value;
-}
+};
 
-defineExpose({closeModal});
+defineExpose({ toggleModal });
 </script>
 
 <template>
   <div v-if="showModal" :class="css.modal">
 
     <div :class="css.modal_content">
-      <Button label="✖" :style="css.close" :onClick="closeModal" />
-      <p :class="css.info_bold">{{ heading }}</p>
-      <p>{{ sub }}</p>
+      <Button label="✖" :style="css.close" :onClick="closeCallback" />
+      <p :class="css.info_bold">{{ title }}</p>
+      <p>{{ message }}</p>
       <div :class="css.button_container">
-        <Button :onClick="closeModal" label="Cancel" :style="'green'" />
-        <Button label="Submit" :style="'red'" :onClick="onClickSubmit" />
+        <Button :label="rejectionLabel" :style="'success'" :onClick="rejectCallback" />
+        <Button :label="acceptionLabel" :style="'danger'"  :onClick="acceptCallback" />
       </div>
     </div>
   </div>

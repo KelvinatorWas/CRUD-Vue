@@ -8,7 +8,6 @@ import { DB_ANIMALS, joinLink } from '@/utils/serverLink';
 import { onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Toastify from 'toastify-js'
-import "toastify-js/src/toastify.css"
 
 // Route & Router
 const route = useRoute();
@@ -17,20 +16,20 @@ const id = route.params.id as string;
 
 // Animal & Modal Reference
 const animal = ref<Animal>();
-const child = ref<typeof Modal>();
+const modal = ref<typeof Modal>();
 
 const getAnimal = async () => {
   const data = await readDataOne<Animal>(joinLink(DB_ANIMALS, id));
   animal.value = data;
-}
+};
 
 const onDeleteClick = () => {
-  child.value?.closeModal();
-}
+  modal.value?.toggleModal();
+};
 
 const onEditClick = () => {
   router.push(joinLink(id, "edit"));
-}
+};
 
 const deleteAnimal = () => {
   deleteData(DB_ANIMALS, +id);
@@ -44,18 +43,17 @@ const deleteAnimal = () => {
   }).showToast();
 
   router.push('/');
-}
-
+};
 
 onBeforeMount(() => {
   getAnimal();
-})
+});
 
 </script>
 
 <template>
-  <main class="detailed-animals">
-    <section v-if="animal" class="ui">
+  <main v-if="animal" class="detailed-animals">
+    <section class="ui">
       <div class="data">
         <Image :imgName="animal.image" :imgAlt="animal.image" imgClass="animal-image" />
         <div class="animal-info">  
@@ -66,12 +64,19 @@ onBeforeMount(() => {
       </div>
 
       <div class="button-container">
-        <Button label="Edit" :style="'green'" :onClick="onEditClick" />
-        <Button label="Delete" :style="'red'" :onClick="onDeleteClick" />
+        <Button label="Edit"   :style="'success'" :onClick="onEditClick" />
+        <Button label="Delete" :style="'danger'"  :onClick="onDeleteClick" />
       </div>
     </section>
+
+    <Modal
+      ref="modal"
+      @acceptCallback="deleteAnimal"
+      title="There is no going back!"
+      :message="`Are you sure you want to delete ${animal.name}?`"
+      acceptionLabel="Delete"
+    />
   </main>
-  <Modal @onClickSubmit="deleteAnimal" ref="child" />
 </template>
 
 <style>
@@ -111,6 +116,10 @@ onBeforeMount(() => {
   margin-bottom: 1rem;
 }
 
+.animal-text {
+  margin: .5rem 0;
+}
+
 .button-container {
   display: flex;
   column-gap: 2rem;
@@ -125,7 +134,5 @@ onBeforeMount(() => {
   user-select: none;
 }
 
-.animal-text {
-  margin: .5rem 0;
-}
+
 </style>

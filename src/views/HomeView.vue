@@ -10,6 +10,8 @@ import AnimalList from '@/components/AnimalList/AnimalListComponent.vue'
 
 <style>
 .main-container {
+  display: flex;
+  justify-content: center;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
   padding: 1rem;
   border-radius: 5px;

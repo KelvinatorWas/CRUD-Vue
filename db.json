@@ -4,13 +4,13 @@
       "id": 1,
       "name": "Bald Eagle",
       "age": 3,
-      "image": "bald_eagle",
+      "image": "Bald_Eagle",
       "species": "Bird"
     },
     {
       "id": 3,
       "name": "Puppy",
-      "age": 123,
+      "age": 1,
       "image": "puppy",
       "species": "Mammal"
     },
@@ -37,7 +37,7 @@
     },
     {
       "id": 9,
-      "name": "Cowsadsa",
+      "name": "Cow",
       "age": 5,
       "image": "cow",
       "species": "Mammal"

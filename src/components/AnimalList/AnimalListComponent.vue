@@ -6,34 +6,22 @@ import SelectComponent from '../Select/SelectComponent.vue'
 import { createData, readData } from '@/utils/crud';
 import type { Animal } from '@/types/animal'
 import { ref } from 'vue';
-import type { InputTypes } from '@/types/input';
+import { Species, type InputTypes } from '@/types/input';
 import Toastify from 'toastify-js'
 
 const Inputs:InputTypes[] = [
   {
     vModal:"name",
-    label: { innerText: 'Name:', for: 'name' },
     input: { id: 'name', type: 'text', placeholder: 'Name...', required: true }
   },
   {
     vModal:"image",
-    label: { innerText: 'Image Name:', for: 'image' },
     input: { id: 'image', type: 'text', placeholder: 'Image Name...', required: true }
   },
   {
     vModal:"age",
-    label: { innerText: 'Age:', for: 'age' },
     input: { id: 'age', type: 'text', placeholder: 'Age...', required: true }
   },
-]
-
-const Species = [
-  "Unknown",
-  "Mammal",
-  "Bird",
-  "Fish",
-  "Reptile",
-  "Amphibian",
 ]
 
 export default {
@@ -94,46 +82,56 @@ export default {
 
 
 <template>
-  <ButtonComponent 
-    :style="showForm ? 'ui-select ui-active' : 'ui-select'"
-    :label="showForm ? 'Hide Form' : 'Show Form'"
-    :onClick="onShowFormClick"
-  />
 
-  <div class="editor">
-    <section class="animals">
-      <AnimalCard v-for="(animal, index) in animals" :key="index" :animalData=animal />
-    </section>
+  <section>
 
-    <section class="editor-form-section" v-if="showForm">
-      <form id="addAnimal" class="add-animal" :onSubmit="onSubmit">
-        <InputComponent
-          v-for="(inputType, index) in formInputs"
+    <ButtonComponent 
+      :style="showForm ? 'ui-select ui-active' : 'ui-select'"
+      :label="showForm ? 'Hide Form' : 'Show Form'"
+      :onClick="onShowFormClick"
+    />
+
+    <div class="editor">
+      <section class="animals">
+        <AnimalCard 
+          v-for="(animal, index) in animals"
           :key="index"
-          :label="inputType.label"
-          :input="inputType.input"
-          v-model="formData[inputType.vModal]"
-        /> 
-
-        <SelectComponent
-          v-model="formData.species"
-          placeholder="Select Species"
-          :label="{for:'species', innerText:'Species:'}"
-          id="species"
-          :optionValues="speciesType"
+          :animalData=animal
         />
+      </section>
 
-        <ButtonComponent :style="'green'" label="Add Animal"/>
-      </form>
-    </section>
-  </div>
+      <section :class="`editor-form-section ${showForm ? 'active' : ''}`" >
+        <form id="addAnimal" class="add-animal" :onSubmit="onSubmit">
+          <InputComponent
+            v-for="(inputType, index) in formInputs"
+            :key="index"
+            :label="inputType.label"
+            :input="inputType.input"
+            v-model="formData[inputType.vModal]"
+          /> 
+
+          <SelectComponent
+            v-model="formData.species"
+            placeholder="Select Species"
+            id="species"
+            :optionValues="speciesType"
+          />
+
+          <ButtonComponent :style="'success'" label="Add Animal"/>
+        </form>
+      </section>
+    </div>
+
+</section>
 </template>
 
 <style>
+
+
 .animals {
   margin: 1rem;
   display: grid;
-  grid-template-columns: repeat(3, 256px);
+  grid-template-columns: repeat(4, 256px);
   column-gap: 1rem;
   row-gap: 1rem;
 }
@@ -142,22 +140,33 @@ export default {
   display: flex;
   border: 1px solid black;
   border-radius: 5px;
-  flex-direction: row;
+  flex-direction: column-reverse;
   width: fit-content;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 
-.editor-form-section {
+.editor-form-section.active {
   display: flex;
-  border-left: 1px solid black;
+  visibility: visible;
+  justify-content: center;
+  border-bottom: 1px solid black;
   flex: 1;
   padding: 1em;
+  transition: .5s;
+  transform: scaleY(1);
+}
+
+.editor-form-section {
+  display: flex;
+  justify-content: center;
+  transform: scaleY(0);
+  transition: .5s;
+  visibility: hidden;
 }
 
 .add-animal {
   display: flex;
-  flex-direction: column;
-  row-gap: .5rem;
+  column-gap: .5rem;
 }
 
 .base_select {

@@ -7,3 +7,12 @@ export type InputTypes = {
     id:string, type:string, placeholder:string, required:boolean
   }
 } 
+
+export const Species = [
+  "Unknown",
+  "Mammal",
+  "Bird",
+  "Fish",
+  "Reptile",
+  "Amphibian",
+]
