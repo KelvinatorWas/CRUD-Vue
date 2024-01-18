@@ -1,46 +1,41 @@
 # Vue-Crud
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
+### To get started run:
 ```sh
 npm run dev
 ```
-
-### Type-Check, Compile and Minify for Production
-
 ```sh
-npm run build
+npm run db
 ```
+</article>
+<p>This project was made in <b><a href="https://vuejs.org/" target="_blank">VueJs</a>.</b></p>
+<h3>Technolgies Used:</h3>
+<ul>
+<li><b>VueJS</b></li>
+<li><b>Axios</b></li>
+<li><b>Json-server</b></li>
+</ul>
+<h3>Components</h3>
+<p><b>AnimalList:</b> AnimalList Component is where axios requests data from the Json server data base and renders all the cards from it. Through props passes down the data to AnimalCard.</p>
+<p><b>AnimalCard:</b>AnimalCard Component where the one of the animals data is being rendered from the AnimalList Component that is requested from the Json-server data base.</p>
+<p><b>Button:</b> Button&nbsp;takes in 3 props label, style, size, and 1 emitter onClick.</p>
+<p><b>Header:</b> Header is the navigation componenent, by adding more routes can go to diffrerent places on the web.</p>
+<p><b>Image: </b>Image component is Animal requested data from database - "image", takes this image name and if the image database has this "image" then and returns a image, if not returns default image but with the alt of&nbsp; "image".</p>
+</article>
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+#### Input Component
+```ts
+type InputProps = {
+  label?: { // add this if you want a label on your input
+    innerText: string, // what the label says example: "Name:"
+    for: string, // exampel: "name" if the input name is name
+  },
+  input: {
+    id?: string,  // id of the input
+    type: string, // type example: "text", "number", "password",...
+    placeholder: string, // placeholder example: "John Doe" for the name input.
+    required: boolean, // if required will warn that its empty and needs to be filled to submit.
+    size?: 'big' | 'small' | 'medium' | undefined, // input sizes
+  }
+}
 ```
