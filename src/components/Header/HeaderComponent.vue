@@ -23,6 +23,7 @@ import { RouterLink } from 'vue-router'
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.204);
   padding: .5rem;
   border-radius: 5px;
+  border-bottom: 2px solid rgba(0, 172, 195, 0.733);
 }
 
 nav {

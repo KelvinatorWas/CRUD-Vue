@@ -22,24 +22,17 @@
       "species": "Mammal"
     },
     {
-      "id": 8,
-      "name": "Puma",
-      "age": 12,
-      "image": "puma",
-      "species": "Mammal"
-    },
-    {
-      "id": 9,
-      "name": "Cow",
-      "age": 5,
-      "image": "cow",
-      "species": "Mammal"
-    },
-    {
       "id": 10,
       "name": "Donkey",
       "age": 5,
       "image": "Donkey",
+      "species": "Mammal"
+    },
+    {
+      "id": 11,
+      "name": "Puma",
+      "age": 5,
+      "image": "Puma",
       "species": "Mammal"
     }
   ]

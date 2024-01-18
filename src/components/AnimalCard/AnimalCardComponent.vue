@@ -27,6 +27,7 @@ const props = defineProps<AnimalCardProp>()
 
   align-items: center;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid rgba(0, 172, 195, 0.733);
 }
 
 .link {
