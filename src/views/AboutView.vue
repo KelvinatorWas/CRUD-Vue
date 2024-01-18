@@ -2,7 +2,7 @@
   <article class="info">
   <h1 class="about">About this Project</h1>
 
-    <h2>Angular CRUD</h2>
+    <h2>Vue CRUD</h2>
     <p>This project was made in <b><a href="https://vuejs.org/" target="_blank">VueJs</a>.</b></p>
     <h3>Technolgies Used:</h3>
     <ul>

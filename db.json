@@ -22,13 +22,6 @@
       "species": "Mammal"
     },
     {
-      "name": "Frog",
-      "image": "frog",
-      "age": 1,
-      "species": "Amphibian",
-      "id": 6
-    },
-    {
       "id": 8,
       "name": "Puma",
       "age": 12,
@@ -40,6 +33,13 @@
       "name": "Cow",
       "age": 5,
       "image": "cow",
+      "species": "Mammal"
+    },
+    {
+      "id": 10,
+      "name": "Donkey",
+      "age": 5,
+      "image": "Donkey",
       "species": "Mammal"
     }
   ]
